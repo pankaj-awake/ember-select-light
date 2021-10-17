@@ -3,15 +3,13 @@ import { isNone, isPresent } from '@ember/utils';
 import { action } from '@ember/object';
 import { deprecate } from '@ember/debug';
 
-const noop = () => {};
-
 export default class extends Component {
   constructor() {
     super(...arguments);
 
     this.valueKey = this.args.valueKey ?? 'value';
     this.displayKey = this.args.displayKey ?? 'label';
-    this.change = this.args.onChange ?? this.args.change ?? noop;
+    this.change = this.args.onChange ?? this.args.change;
 
     deprecate(`Triggering @change on <SelectLight /> is deprecated in favor of @onChange due to ember-template-lint's no-passed-in-event-handlers rule`, !this.args.change, {
       id: 'ember-select-light.no-passed-in-event-handlers',
